@@ -2,7 +2,10 @@ const db = require('./dbConfig.js')
 
 module.exports = {
     totalList,
-    add
+    add,
+    erase,
+    edit,
+    getSolo
 }
 
 async function totalList() {
@@ -12,3 +15,23 @@ async function totalList() {
 async function add(note) {
     return db('NOTES').insert(note);
 }
+
+async function getSolo(id) {
+    return db('NOTES')
+      .where('id', id);
+    }
+
+async function erase(id) {
+    return db('NOTES')
+      .where('id', id)
+      .del();
+  }
+
+  async function edit(id, changes) {
+    return 
+    let count = db('NOTES').where('id', id).update(changes)
+      if (count > 0) {
+        this.getSolo(id)
+        }
+        else {null};
+  }
