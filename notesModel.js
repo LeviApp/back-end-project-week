@@ -27,11 +27,6 @@ async function erase(id) {
       .del();
   }
 
-  async function edit(id, changes) {
-    return 
-    let count = db('NOTES').where('id', id).update(changes)
-      if (count > 0) {
-        this.getSolo(id)
-        }
-        else {null};
+  async function edit(id, note) {
+    return db('NOTES').where('id', id).update(note);
   }

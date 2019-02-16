@@ -1,11 +1,14 @@
 
 const express = require('express')
+const cors = require('cors')
 
 const server = express()
 
 const notes = require('./notesModel.js')
 
 server.use(express.json())
+server.use(cors())
+
 
 module.exports = server;
 
@@ -75,12 +78,9 @@ server.delete('/note/:id', async (req,res) => {
         if (editedNOTE.title && editedNOTE.textBody) {
             try {
             let count = await notes.edit(id, editedNOTE);
-             
-                if (count) {
-                    let data = notes.totalList(id);
 
-                        res.json(data)
-                    
+                if (count) {
+                    res.status(200).json(editedNOTE)
                 }
         
                 else { res.status(404).json({message:`The note with the specified ID does not exist.`})}
@@ -100,3 +100,5 @@ server.delete('/note/:id', async (req,res) => {
         }
         
         })
+
+
