@@ -18,15 +18,16 @@ async function add(note) {
 
 async function getSolo(id) {
     return db('NOTES')
-      .where('id', id);
+      .where('id', id).first();
     }
 
 async function erase(id) {
     return db('NOTES')
       .where('id', id)
+      .first()
       .del();
   }
 
   async function edit(id, note) {
-    return db('NOTES').where('id', id).update(note);
+    return db('NOTES').where('id', id).first().update(note);
   }
