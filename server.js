@@ -97,7 +97,7 @@ server.delete('/note/:id', async (req,res) => {
         else {
             res
             .status(400)
-            .json({message: "missing project_id, description, or notes"})
+            .json({message: "missing notes id, description, or notes"})
         }
         
         })
