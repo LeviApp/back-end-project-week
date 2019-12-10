@@ -42,6 +42,7 @@ server.get('/note/:id', async (req, res) => {
 
 server.post('/new', async (req,res) => {
     const noteDATA = req.body;
+    console.log(`req.body`, req.body)
     if (noteDATA.title && noteDATA.textBody) {
         const ids = await notes.add(noteDATA)
         res.status(201).json(ids)
