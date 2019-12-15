@@ -43,7 +43,7 @@ server.get('/note/:id', async (req, res) => {
 server.post('/new', async (req,res) => {
     const noteDATA = req.body;
     console.log(`req.body`, req.body)
-    if (noteDATA.title && noteDATA.textBody) {
+    if (noteDATA.title && noteDATA.textBody && noteDATA.img_url) {
         const ids = await notes.add(noteDATA)
         res.status(201).json(ids)
     }
@@ -77,7 +77,7 @@ server.delete('/note/:id', async (req,res) => {
         const editedNOTE  = req.body;
         const {id} = req.params;
         
-        if (editedNOTE.title && editedNOTE.textBody) {
+        if (editedNOTE.title && editedNOTE.textBody & editedNOTE.img_url ) {
             try {
             let count = await notes.edit(id, editedNOTE);
 
@@ -98,7 +98,7 @@ server.delete('/note/:id', async (req,res) => {
         else {
             res
             .status(400)
-            .json({message: "missing notes id, description, or notes"})
+            .json({message: "missing notes id, description, url, or notes"})
         }
         
         })
