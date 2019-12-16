@@ -43,7 +43,7 @@ server.get('/note/:id', async (req, res) => {
 server.post('/new', async (req,res) => {
     const noteDATA = req.body;
     console.log(`req.body`, req.body)
-    if (noteDATA.title && noteDATA.textBody && editedNOTE.img_url) {
+    if (noteDATA.title && noteDATA.textBody && noteDATA.img_url) {
         const ids = await notes.add(noteDATA)
         res.status(201).json(ids)
     }
