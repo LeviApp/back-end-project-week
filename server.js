@@ -77,7 +77,7 @@ server.delete('/note/:id', async (req,res) => {
         const editedNOTE  = req.body;
         const {id} = req.params;
         
-        if (editedNOTE.title && editedNOTE.textBody && editedNOTE.img_url) {
+        if (editedNOTE.title !== '' || editedNOTE.textBody !== '' || editedNOTE.img_url !== '') {
             try {
             let count = await notes.edit(id, editedNOTE);
 
@@ -98,7 +98,7 @@ server.delete('/note/:id', async (req,res) => {
         else {
             res
             .status(400)
-            .json({message: "missing notes id, description, url, or notes"})
+            .json({error: "missing notes id, description, url, or notes"})
         }
         
         })
