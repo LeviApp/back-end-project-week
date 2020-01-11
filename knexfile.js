@@ -62,12 +62,11 @@
 // Update with your config settings.
 require("dotenv").config();
 const pg = require("pg");
-pg.defaults.ssl = true;
-
 const localPgConnection = {
   host: "127.0.0.1",
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
+  ssl: false,
   database: "journal",
   charset: "utf8"
 };
