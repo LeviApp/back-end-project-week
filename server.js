@@ -9,9 +9,6 @@ const quotes = require('./quotesModel.js')
 server.use(express.json())
 server.use(cors())
 
-
-module.exports = server;
-
 server.get('/', (req, res) => {
     res.send({ message: 'working so far' });
   });
@@ -107,3 +104,4 @@ server.delete('/quote/:id', async (req,res) => {
         
         })
 
+module.exports = server;
