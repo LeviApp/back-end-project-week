@@ -9,25 +9,25 @@ module.exports = {
 }
 
 async function totalList() {
-    return db('NOTES');
+    return db('quotes');
 }
 
-async function add(note) {
-    return db('NOTES').insert(note);
+async function add(quote) {
+    return db('quotes').insert(quote);
 }
 
 async function getSolo(id) {
-    return db('NOTES')
+    return db('quotes')
       .where('id', id).first();
     }
 
 async function erase(id) {
-    return db('NOTES')
+    return db('quotes')
       .where('id', id)
       .first()
       .del();
   }
 
-  async function edit(id, note) {
-    return db('NOTES').where('id', id).first().update(note);
+  async function edit(id, quote) {
+    return db('quotes').where('id', id).first().update(quote);
   }
