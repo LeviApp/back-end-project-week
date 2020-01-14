@@ -17,8 +17,9 @@ async function add(quote) {
     .insert(quote)
     .returning('id')
     .then(
-      function (id){
-           return id[0];  //id here
+      function (){
+        return db('quotes')
+        .insert(quote)
       }
   )
 }
