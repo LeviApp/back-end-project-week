@@ -13,9 +13,11 @@ async function totalList() {
 }
 
 async function add(quote) {
-    return db('quotes')
-    .insert(quote)
-    .returning('id')[0]
+  const [quoteId] = await db('quotes')
+  .insert(quote)
+  .returning('id')
+
+  return {...quote, id: quoteId}
 }
 
 async function getSolo(id) {
