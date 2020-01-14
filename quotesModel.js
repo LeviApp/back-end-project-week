@@ -16,6 +16,11 @@ async function add(quote) {
     return db('quotes')
     .insert(quote)
     .returning('id')
+    .then(
+      function (id){
+           console.log(id[0]);  //id here
+      }
+  )
 }
 
 async function getSolo(id) {
