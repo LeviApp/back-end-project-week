@@ -15,8 +15,7 @@ async function totalList() {
 async function add(quote) {
     return db('quotes')
     .insert(quote)
-    .returning()
-    .then(([id]) => console.log(id));
+    .returning('id')
 }
 
 async function getSolo(id) {
