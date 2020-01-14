@@ -13,7 +13,10 @@ async function totalList() {
 }
 
 async function add(quote) {
-    return db('quotes').insert(quote);
+    return db('quotes')
+    .insert(quote)
+    .returning('id')
+    .then(([id]) => console.log(id));
 }
 
 async function getSolo(id) {
