@@ -18,7 +18,7 @@ async function add(quote) {
     .returning('id')
     .then(
       function (id){
-           console.log(id[0]);  //id here
+           return id[0];  //id here
       }
   )
 }
