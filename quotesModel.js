@@ -17,7 +17,7 @@ async function add(quote) {
   .insert(quote)
   .returning('id')
 
-  return {...quote, id: quoteId}
+  return quoteId
 }
 
 async function getSolo(id) {
