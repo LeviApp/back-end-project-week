@@ -9,7 +9,7 @@ module.exports = {
 }
 
 async function totalList() {
-    return db('quotes');
+    return db('quotes') || [];
 }
 
 async function add(quote) {
