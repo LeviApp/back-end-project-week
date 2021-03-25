@@ -12,7 +12,7 @@ async function totalList() {
     try {
       return db('quotes');
     }
-    catch {
+    catch (error) {
       return []
     }
 }
@@ -25,7 +25,7 @@ async function add(quote) {
     return quoteId
   }
 
-  catch {
+  catch (error) {
     return {
       "message": "Note could not be added"
     }
@@ -33,9 +33,19 @@ async function add(quote) {
 }
 
 async function getSolo(id) {
+  try {
     return db('quotes')
       .where('id', id).first();
     }
+  
+  catch (error) {
+    return {
+      "message": "Note could not be deleted"
+    }
+    }
+  }
+
+
 
 async function erase(id) {
   try {
@@ -44,7 +54,8 @@ async function erase(id) {
     .first()
     .del();
   }
-  catch {
+
+  catch (error) {
     return {
       "message": "Note could not be deleted"
     }
@@ -56,7 +67,7 @@ async function erase(id) {
       return db('quotes').where('id', id).first().update(quote);
     }
 
-    catch {
+  catch (error) {
       return {
         "message": "Note could not be editted"
       }
