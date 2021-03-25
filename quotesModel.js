@@ -9,67 +9,29 @@ module.exports = {
 }
 
 async function totalList() {
-    try {
-      return db('quotes');
-    }
-    catch (error) {
-      return []
-    }
+    return db('quotes');
 }
 
 async function add(quote) {
-  try {
-    const [quoteId] = await db('quotes')
-    .insert(quote)
-    .returning('id')
-    return quoteId
-  }
+  const [quoteId] = await db('quotes')
+  .insert(quote)
+  .returning('id')
 
-  catch (error) {
-    return {
-      "message": "Note could not be added"
-    }
-  }
+  return quoteId
 }
 
 async function getSolo(id) {
-  try {
     return db('quotes')
       .where('id', id).first();
     }
-  
-  catch (error) {
-    return {
-      "message": "Note could not be deleted"
-    }
-    }
-  }
-
-
 
 async function erase(id) {
-  try {
     return db('quotes')
-    .where('id', id)
-    .first()
-    .del();
-  }
-
-  catch (error) {
-    return {
-      "message": "Note could not be deleted"
-    }
-  }
+      .where('id', id)
+      .first()
+      .del();
   }
 
   async function edit(id, quote) {
-    try {
-      return db('quotes').where('id', id).first().update(quote);
-    }
-
-  catch (error) {
-      return {
-        "message": "Note could not be editted"
-      }
-    }
+    return db('quotes').where('id', id).first().update(quote);
   }

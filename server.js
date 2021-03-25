@@ -1,25 +1,26 @@
 
-const express = require('express');
-const server = express();
-const bodyParser = require('body-parser');
-require('dotenv').config()
-const db = require('./dbConfig');
-const cors = require('cors');
-const axios = require('axios');
-const { Client } = require('pg');
+const express = require('express')
+const cors = require('cors')
 
-server.use(cors());
-server.use(express.json());
-server.use(bodyParser())
+const server = express()
+
+const quotes = require('./quotesModel.js')
+
+server.use(express.json())
+server.use(cors())
 
 server.get('/', (req, res) => {
     res.send({ message: 'working so far' });
   });
 
 server.get('/home', async (req,res) => {
-    const rows = await quotes.totalList();
-
-    res.status(200).json(rows)
+    try {
+        const rows = await quotes.totalList();
+        res.status(200).json(rows)
+    }
+    catch(err) {
+        res.status(500).json({"message": `Could not retrieve quotes. ${err} ${id}`})
+    }
 })
 
 server.get('/quote/:id', async (req, res) => {
