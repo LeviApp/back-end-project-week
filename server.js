@@ -50,13 +50,20 @@ server.get('/quote/:id', async (req, res) => {
 server.post('/new', async (req,res) => {
     const quoteDATA = req.body;
     console.log(`req.body`, req.body)
-    if (quoteDATA.title && quoteDATA.textBody && quoteDATA.img_url) {
-        const ids = await quotes.add(quoteDATA)
-        res.status(201).json(ids)
+    try {
+        if (quoteDATA.title && quoteDATA.textBody && quoteDATA.img_url) {
+            const ids = await quotes.add(quoteDATA)
+            res.status(201).json(ids)
+        }
+    
+        else {
+            res.status(422).json({"message": "You are missing info"})
+        }
     }
 
-    else {
-        res.status(422).json({"message": "You are missing info"})
+    catch (err) {
+        res.status(500).json({"message": `Could not save message`})
+
     }
 })
 
