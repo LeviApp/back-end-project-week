@@ -1,13 +1,15 @@
+const express = require('express');
+const server = express();
+const bodyParser = require('body-parser');
+require('dotenv').config()
+const db = require('./dbConfig');
+const cors = require('cors');
+const axios = require('axios');
+const { Client } = require('pg');
 
-const express = require('express')
-const cors = require('cors')
-
-const server = express()
-
-const quotes = require('./quotesModel.js')
-
-server.use(express.json())
-server.use(cors())
+server.use(cors());
+server.use(express.json());
+server.use(bodyParser())
 
 server.get('/', (req, res) => {
     res.send({ message: 'working so far' });
